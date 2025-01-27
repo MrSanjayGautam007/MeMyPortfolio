@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="theme-color" content="#4CAF50"> <!-- Set your color here -->
-<!--     <meta name="theme-color" content="#fff"> <!-- Set your color here --> -->
+    <meta name="theme-color" content="#1f1f1f"> 
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/3459/3459528.png" type="image/png">
     <title>My Portfolio</title>
     
-
     <!-- Tab Icon -->
- <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/3459/3459528.png" type="image/png">
+    <!-- <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/3459/3459528.png" type="image/x-icon"> -->
+
     <!-- Google Fonts -->
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
@@ -97,12 +97,12 @@
 
         /* Theme Toggle Button */
         .theme-toggle {
-            padding: 8px 2px;
-            background-color: #de6279;
+            padding: 10px 2px;
+            background-color: #f5f5f5;
             /* background-color: lightgrey; */
-            color: white;
+            color: #1f1f1f;
             border: none;
-            border-radius: 50px;
+            border-radius: 60%;
             cursor: pointer;
             font-size: 1.2rem;
             /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); */
@@ -113,12 +113,12 @@
             /* Top distance */
             right: 20px;
             /* Right distance */
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
         }
 
         .theme-toggle:hover {
-            transform: scale(1.1);
-            background-color: #84a4f0;
+            transform: scale(1.2);
+            /* background-color: #84a4f0; */
             /* box-shadow: 0 5px 15px rgba(71, 177, 226, 0.836); */
             box-shadow: 0 4px 10px rgba(7, 82, 233, 0.9);
             /* border: 1px solid black; */
@@ -126,6 +126,7 @@
 
         body.light-theme .theme-toggle {
             background-color: #1f1f1f;
+            color: #fff;
         }
 
         /* Profile Section */
@@ -450,8 +451,8 @@
     </header>
 
     <!-- Theme Toggle Button (Fixed to the top-right corner) -->
-    <button class="theme-toggle" onclick="toggleTheme()">🌙 / 🌞</button>
-
+    <button class="theme-toggle" onclick="toggleTheme()">☾ / ☀︎</button>
+ 
     <!-- Portfolio Section Title -->
     <!-- <section>
     <h2 style="text-align:center; margin-top: 120px;">Portfolio</h2>
@@ -464,6 +465,7 @@
         <div>
             <h2>Mr Sanjay Gautam</h2>
             <p>React Native Developer | Mobile Application | Android | iOS </p>
+            <!-- <a href="#Contact Me" style="text-decoration: none ;"><h4>Contact Me:</h4></a> -->
             <section id="about-me">
                 <h3>About Me :</h3>
                 <p>
@@ -477,6 +479,7 @@
                     technologies.
                 </p>
             </section>
+           
 
             <!-- Experience Section (Fresher Seeking Internship) -->
             <section id="experience">
@@ -609,7 +612,7 @@
             </div>
             <p>RESTful APIs use HTTP methods to interact with resources in a simple, scalable way.</p>
         </div>
-          <div class="skill-card">
+        <div class="skill-card">
             <div style="display: flex;">
                 <img src="https://cdn-icons-png.flaticon.com/128/1051/1051326.png"
                     alt="Firebase" style="width: 30px; height: 30px; margin-top:  23px; margin-right: 10px;">
@@ -652,7 +655,7 @@
   </footer> -->
     <footer>
         <!-- <p>Contact Me:</p> -->
-        <h2>Contact Me:</h2>
+        <h2 id="Contact Me">Contact Me:</h2>
         <div class="footer-links">
             <!-- Email link with icon -->
             <a href="mailto:sanjaygautam0612@gmail.com" class="footer-link">
