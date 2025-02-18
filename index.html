@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="theme-color" content="#1f1f1f"> 
+    <meta name="theme-color" content="#1f1f1f">
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/3459/3459528.png" type="image/png">
     <title>My Portfolio</title>
-    
+
     <!-- Tab Icon -->
     <!-- <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/3459/3459528.png" type="image/x-icon"> -->
 
     <!-- Google Fonts -->
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    
+
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Quicksand:wght@500&display=swap"
         rel="stylesheet">
@@ -109,16 +110,27 @@
             box-shadow: 0 4px 10px rgba(7, 82, 233, 0.9);
             z-index: 999;
             position: fixed;
-/*             top: 20px; */
-             top: 13px;
+            top: 13px;
             /* Top distance */
             right: 20px;
             /* Right distance */
             transition: transform 0.4s ease;
+            background-image: url('https://img.icons8.com/?size=160&id=SyBDr18WdUcD&format=png');
+            background-size: cover;
+            /* Makes the background cover the entire page */
+            background-position: center;
+            /* Centers the background image */
+            background-repeat: no-repeat;
+            /* Prevents the image from repeating */
+            width: 40px;
+            /* Set width */
+            height: 40px;
+            /* Set height */
+
         }
 
         .theme-toggle:hover {
-            transform: scale(1.2);
+            /* transform: scale(1.1); */
             /* background-color: #84a4f0; */
             /* box-shadow: 0 5px 15px rgba(71, 177, 226, 0.836); */
             box-shadow: 0 4px 10px rgba(7, 82, 233, 0.9);
@@ -126,8 +138,9 @@
         }
 
         body.light-theme .theme-toggle {
-            background-color: #1f1f1f;
+            /* background-color: #1f1f1f; */
             color: #fff;
+            background-image: url('https://cdn-icons-png.flaticon.com/128/6932/6932837.png');
         }
 
         /* Profile Section */
@@ -452,8 +465,8 @@
     </header>
 
     <!-- Theme Toggle Button (Fixed to the top-right corner) -->
-    <button class="theme-toggle" onclick="toggleTheme()">☾ / ☀︎</button>
- 
+    <button class="theme-toggle" onclick="toggleTheme()"></button>
+
     <!-- Portfolio Section Title -->
     <!-- <section>
     <h2 style="text-align:center; margin-top: 120px;">Portfolio</h2>
@@ -480,7 +493,7 @@
                     technologies.
                 </p>
             </section>
-           
+
 
             <!-- Experience Section (Fresher Seeking Internship) -->
             <section id="experience">
@@ -615,14 +628,15 @@
         </div>
         <div class="skill-card">
             <div style="display: flex;">
-                <img src="https://cdn-icons-png.flaticon.com/128/1051/1051326.png"
-                    alt="Firebase" style="width: 30px; height: 30px; margin-top:  23px; margin-right: 10px;">
-                <a href="https://www.w3schools.com/git/git_intro.asp" target="_blank"
+                <img src="https://cdn-icons-png.flaticon.com/128/1051/1051326.png" alt="Firebase"
+                    style="width: 30px; height: 30px; margin-top:  23px; margin-right: 10px;">
+                <a href="https://www.geeksforgeeks.org/rest-api-introduction/" target="_blank"
                     style="text-decoration: none;">
                     <h3>Git & GitHub</h3>
                 </a>
             </div>
-            <p>Git is an open-source version control tool that tracks changes to files, while GitHub is a web-based platform </p>
+            <p>Git is an open-source version control tool that tracks changes to files, while GitHub is a web-based
+                platform </p>
         </div>
 
     </section>
@@ -640,7 +654,7 @@
             <p>A mobile app that provides real-time weather data using a weather API.</p>
         </div>
         <div class="project">
-            <a href="" style="text-decoration: none;" target="_blank">
+            <a href="https://www.google.com" style="text-decoration: none;" target="_blank">
                 <h3>Ecommerce App</h3>
             </a>
             <p>An Ecommerce app built with React Native and Axios For API Calls</p>
