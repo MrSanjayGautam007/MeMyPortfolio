@@ -7,401 +7,616 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="theme-color" content="#1f1f1f">
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/3459/3459528.png" type="image/png">
-    <title>My Portfolio</title>
-
-    <!-- Tab Icon -->
-    <!-- <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/3459/3459528.png" type="image/x-icon"> -->
-
-    <!-- Google Fonts -->
+    <title>Sanjay Gautam | Portfolio</title>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Quicksand:wght@500&display=swap"
-        rel="stylesheet">
-
-    <!-- Preconnect to Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <!-- Link to Noto Serif Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Poppins:wght@300;400;600&display=swap"
         rel="stylesheet">
-    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"> -->
+
     <style>
-        /* General styles */
-        body {
-            /* font-family: 'Poppins', sans-serif; */
-            font-family: 'Noto Serif', serif;
-            /* Apply Noto Serif font */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            /* background-color: #121212; */
-            background-color: #1f1f1f;
-            color: #fff;
-            transition: background-color 0.3s, color 0.3s ease;
-            padding-top: 60px;
-            /* To prevent content from hiding under fixed header */
         }
 
-        /* Light Theme */
+        :root {
+            --bg: #1f1f1f;
+            --bg2: #252525;
+            --card: #2a2a2a;
+            --text: #fff;
+            --sub: #ccc;
+            --accent: #00adff;
+            --accent2: #3122ff;
+            --border: rgba(0, 173, 255, 0.25);
+        }
+
+        body {
+            font-family: 'Noto Serif', serif;
+            background-color: var(--bg);
+            color: var(--text);
+            transition: background-color 0.3s, color 0.3s;
+            scroll-behavior: smooth;
+        }
+
         body.light-theme {
-            background-color: #f5f5f5;
-            color: #333;
+            --bg: #f5f5f5;
+            --bg2: #ececec;
+            --card: #fff;
+            --text: #121212;
+            --sub: #555;
+            --border: rgba(0, 100, 255, 0.2);
         }
 
-
-        /* Header */
+        /* ── HEADER ── */
         header {
-            background-color: #1f1f1f;
-            padding: 10px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background-color: var(--bg);
+            padding: 0 40px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             position: fixed;
             width: 100%;
             top: 0;
             left: 0;
-            z-index: 10;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
         }
 
-        /* Light theme header background */
-        body.light-theme header {
-            background-color: #f5f5f5;
+        header .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text);
         }
 
-        /* Text color for header */
-        header h2 {
-            margin: 0;
-            margin-right: 120px;
-            font-size: 1.9rem;
-            font-weight: 600;
-            /* letter-spacing: 1px; */
-            color: #fff;
+        header nav {
+            display: flex;
+            gap: 28px;
+            padding-right: 70px;
         }
 
-        header h2 {
-            margin-right: 100px;
+        header nav a {
+            color: var(--sub);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
         }
 
-        body.light-theme header h2 {
-            color: #121212;
+        header nav a:hover {
+            color: var(--accent);
         }
 
-        header p {
-            color: #aaa;
-            font-size: 1rem;
-        }
-
-        body.light-theme header p {
-            color: #555;
-        }
-
-        /* Theme Toggle Button */
-        .theme-toggle {
-            padding: 10px 2px;
-            background-color: #f5f5f5;
-            /* background-color: lightgrey; */
-            color: #1f1f1f;
-            border: none;
-            border-radius: 60%;
+        /* ── HAMBURGER MENU ── */
+        .hamburger {
+            display: none;
+            flex-direction: column;
             cursor: pointer;
-            font-size: 1.2rem;
-            /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); */
+            gap: 6px;
+            z-index: 101;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background-color: var(--text);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* ── MOBILE MENU ── */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 64px;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg2);
+            flex-direction: column;
+            gap: 0;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 99;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: var(--sub);
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 14px 40px;
+            transition: color 0.2s, background-color 0.2s;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--accent);
+            background-color: rgba(0, 173, 255, 0.1);
+        }
+
+        /* ── THEME TOGGLE ── */
+        .theme-toggle {
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
             box-shadow: 0 4px 10px rgba(7, 82, 233, 0.9);
             z-index: 999;
             position: fixed;
             top: 13px;
-            /* Top distance */
             right: 20px;
-            /* Right distance */
             transition: transform 0.4s ease;
             background-image: url('https://img.icons8.com/?size=160&id=SyBDr18WdUcD&format=png');
             background-size: cover;
-            /* Makes the background cover the entire page */
             background-position: center;
-            /* Centers the background image */
             background-repeat: no-repeat;
-            /* Prevents the image from repeating */
             width: 40px;
-            /* Set width */
             height: 40px;
-            /* Set height */
-
-        }
-
-        .theme-toggle:hover {
-            /* transform: scale(1.1); */
-            /* background-color: #84a4f0; */
-            /* box-shadow: 0 5px 15px rgba(71, 177, 226, 0.836); */
-            box-shadow: 0 4px 10px rgba(7, 82, 233, 0.9);
-            /* border: 1px solid black; */
+            background-color: #f5f5f5;
         }
 
         body.light-theme .theme-toggle {
-            /* background-color: #1f1f1f; */
-            color: #fff;
             background-image: url('https://cdn-icons-png.flaticon.com/128/6932/6932837.png');
         }
 
-        /* Profile Section */
-        #profile {
+        /* ── HERO ── */
+        #hero {
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-            margin-top: 90px;
-            /* Increased space for better top margin */
-            padding: 50px;
+            justify-content: center;
+            padding: 100px 40px 60px;
+            background: radial-gradient(ellipse at 60% 40%, rgba(49, 34, 255, 0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(0, 173, 255, 0.08) 0%, transparent 50%),
+                var(--bg);
             text-align: center;
             flex-direction: column;
-            background-color: #1f1f1f;
+            gap: 24px;
         }
 
-        body.light-theme #profile {
-            background-color: #f5f5f5;
+        #hero .avatar-wrap {
+            position: relative;
+            display: inline-block;
         }
 
-        #profile img {
-            width: 180px;
-            height: 180px;
+        #hero img {
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
-            border: 2px solid #3122ff;
-            box-shadow: 0 8px 20px rgba(65, 100, 239, 0.4);
-            transition: transform 0.3s ease;
+            border: 3px solid var(--accent2);
+            box-shadow: 0 0 40px rgba(0, 173, 255, 0.35);
+            transition: transform 0.3s, box-shadow 0.3s;
+            object-fit: cover;
         }
 
-        body.light-theme #profile img {
-            border: 2px solid #333;
+        #hero img:hover {
+            transform: scale(1.07);
+            box-shadow: 0 0 60px rgba(0, 173, 255, 0.7);
         }
 
-        #profile img:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 30px rgba(0, 173, 255, 0.8);
-            /* Neon Blue */
-        }
-
-        #profile h2 {
-            margin-top: 20px;
-            font-size: 2rem;
-            font-weight: 600;
+        #hero .badge {
+            position: absolute;
+            bottom: 6px;
+            right: 6px;
+            background: var(--accent);
             color: #fff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
         }
 
-        body.light-theme #profile h2 {
-            color: #121212;
+        #hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            line-height: 1.2;
         }
 
-        #profile p {
-            color: #ccc;
-            font-size: 1.2rem;
-            margin-top: 10px;
+        #hero .tagline {
+            color: var(--accent);
+            font-size: 1.1rem;
+            font-weight: 400;
         }
 
-        body.light-theme #profile p {
-            color: #555;
+        #hero .about-text {
+            max-width: 620px;
+            color: var(--sub);
+            font-size: 1rem;
+            line-height: 1.8;
         }
 
-        /* Skills Section */
-        #skills {
-            padding: 100px 20px;
-            background-color: #1f1f1f;
-            text-align: center;
+        .hero-btns {
             display: flex;
-            justify-content: space-around;
+            gap: 16px;
             flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 8px;
         }
 
-        body.light-theme #skills {
-            /* background-color: #fafafa; */
-            background-color: #f5f5f5;
+        .btn {
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
 
+        .btn-primary {
+            background: linear-gradient(135deg, #3122ff, #00adff);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(0, 173, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 173, 255, 0.6);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 1.5px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* ── SECTION COMMON ── */
+        section {
+            padding: 90px 40px;
+            background-color: var(--bg);
+        }
+
+        section:nth-child(even) {
+            background-color: var(--bg2);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #3122ff, #00adff);
+            border-radius: 2px;
+            margin: 12px auto 0;
+        }
+
+        /* ── EXPERIENCE ── */
+        #experience {
+            background-color: var(--bg2);
+        }
+
+        .timeline {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #3122ff, #00adff);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .timeline-dot {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3122ff, #00adff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(0, 173, 255, 0.5);
+            z-index: 1;
+        }
+
+        .timeline-content {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 22px 26px;
+            flex: 1;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-content h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .timeline-content .duration {
+            font-size: 0.82rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .timeline-content p {
+            color: var(--sub);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .timeline-content ul {
+            color: var(--sub);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            padding-left: 18px;
+            margin-top: 8px;
+        }
+
+        /* ── SKILLS ── */
+        .skills-wrapper {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .skill-group-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 14px;
+            padding-left: 4px;
+            border-left: 3px solid var(--accent);
+            padding-left: 10px;
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
         .skill-card {
-            background-color: #2c2c2c;
-            padding: 10px;
-            margin: 20px;
-            border-radius: 20px;
-            width: 200px;
-            /* Reduced width */
-            height: 70px;
-            /* Reduced height */
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 12px 18px;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            transition: transform 0.3s, box-shadow 0.3s ease-in-out;
-            box-shadow: 0 0 10px rgba(0, 173, 255, 0.8);
-            /* Neon Blue */
-            cursor: pointer;
-        }
-
-        body.light-theme .skill-card {
-            background-color: #fff;
-            color: #191717;
-            box-shadow: 0 0 10px rgba(0, 173, 255, 0.8);
-            /* Neon Blue */
-        }
-
-        body.light-theme .skill-card p {
-            /* background-color: #fff; */
-            color: #191717;
-            /* Neon Blue */
-            /* box-shadow: 0 0 10px rgba(0, 173, 255, 0.8);  */
+            gap: 10px;
+            transition: transform 0.25s, box-shadow 0.25s;
+            box-shadow: 0 0 10px rgba(0, 173, 255, 0.2);
+            cursor: default;
         }
 
         .skill-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(0, 173, 255, 1);
-            /* Neon Blue */
+            transform: translateY(-4px);
+            box-shadow: 0 0 22px rgba(0, 173, 255, 0.7);
         }
 
-        .skill-card h3 {
-            font-size: 1.4rem;
-            /* Smaller heading size */
-            color: #fff;
-            margin-bottom: 10px;
-            text-align: center;
+        .skill-card img {
+            width: 26px;
+            height: 26px;
+            object-fit: contain;
         }
 
-        body.light-theme .skill-card h3 {
-            color: #333;
+        .skill-card span {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text);
         }
 
-        .skill-card p {
-            color: #d5c8c8;
-            font-size: 1rem;
-            text-align: center;
-        }
-
-        /* Projects Section */
-        #projects {
-            padding: 100px 20px;
-            /* background-color: #121212; */
-            background-color: #1f1f1f;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-
-        body.light-theme #projects {
-            /* background-color: #fff; */
-            background-color: #f5f5f5;
-
+        /* ── PROJECTS ── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
         .project {
-            background-color: #1c1c1c;
-            border-radius: 15px;
-            margin: 20px;
-            padding: 22px;
-            width: 200px;
-            height: 200px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 28px 22px;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 0 10px rgba(0, 173, 255, 0.8);
-            /* Neon Blue */
-        }
-
-        body.light-theme .project {
-            background-color: #f5f5f5;
-            color: #333;
+            gap: 10px;
+            transition: transform 0.25s, box-shadow 0.25s;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
         }
 
         .project:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(0, 173, 255, 1);
-            /* Neon Blue */
+            transform: translateY(-6px);
+            box-shadow: 0 8px 30px rgba(0, 173, 255, 0.5);
+        }
+
+        .project-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #3122ff22, #00adff22);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
         }
 
         .project h3 {
-            font-size: 1.8rem;
-            color: #fff;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        body.light-theme .project h3 {
-            color: #333;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
         }
 
         .project p {
-            font-size: 1rem;
-            color: #ddd;
-            text-align: center;
-
+            font-size: 0.9rem;
+            color: var(--sub);
+            line-height: 1.6;
+            flex: 1;
         }
 
-        body.light-theme .project p {
-            color: #555;
+        .projects-category {
+            margin-bottom: 60px;
         }
 
-        /* Footer */
-        footer {
-            /* background-color: #1d1c1c; */
-            background-color: #1f1f1f;
-            color: #fff;
-            padding: 15px 20px;
-            text-align: center;
-            font-size: 1rem;
-            margin-top: 40px;
-            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
-
-        }
-
-        footer p {
+        .category-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             font-size: 1.2rem;
-            margin-bottom: 20px;
+            font-weight: 700;
+            margin-bottom: 28px;
+            padding-left: 4px;
+        }
+
+        .category-icon {
+            font-size: 1.4rem;
+        }
+
+        .category-badge {
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            background: rgba(0, 173, 255, 0.15);
+            color: var(--accent);
+            letter-spacing: 0.5px;
+        }
+
+        .category-badge.live {
+            background: rgba(0, 200, 100, 0.15);
+            color: #00c864;
+        }
+
+        .project-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .project-link {
+            color: var(--sub);
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .project-link:hover {
+            color: var(--accent);
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .project-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+            background: rgba(0, 173, 255, 0.12);
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .project-tag.ios {
+            background: rgba(180, 180, 180, 0.12);
+            color: #aaa;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 50px 40px 30px;
+            text-align: center;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        footer h2 {
+            font-size: 1.6rem;
+            margin-bottom: 30px;
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: 10px;
+            gap: 16px;
             flex-wrap: wrap;
-            /* Ensure the items can wrap when necessary */
+            margin-bottom: 30px;
         }
 
-        /* Footer contact link styles */
         .footer-link {
             color: #f7d8ce;
             text-decoration: none;
-            font-size: 1.1rem;
-            padding: 8px 12px;
+            font-size: 1rem;
+            padding: 10px 20px;
             border-radius: 30px;
             display: flex;
             align-items: center;
-            transition: all 0.3s ease;
-            /* box-shadow: 0px 4px 10px rgba(255, 87, 34, 0.3); */
+            gap: 8px;
+            transition: all 0.3s;
             box-shadow: 0 4px 10px rgba(7, 82, 233, 0.9);
-            margin-bottom: 10px;
-            /* Add space between each link */
         }
 
         .footer-link i {
-            margin-right: 8px;
-            /* Space between icon and text */
-            font-size: 1.5rem;
-            /* Icon size */
+            font-size: 1.2rem;
         }
 
         .footer-link:hover {
             background-color: #365aeb;
             color: #fff;
-            transform: scale(1.05);
-            /* box-shadow: 0px 4px 20px rgba(255, 87, 34, 0.7); */
-            box-shadow: 0 4px 10px rgba(7, 82, 233, 0.9);
-        }
-
-        /* Light theme styles for footer */
-        body.light-theme footer {
-            background-color: #f5f5f5;
-            color: #333;
-            box-shadow: 0px 4px 20px rgba(78, 73, 239, 0.7);
-            /* box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1); */
+            transform: translateY(-2px);
         }
 
         body.light-theme .footer-link {
@@ -413,43 +628,55 @@
             color: #edc4b8;
         }
 
-        /* Media query for mobile view */
-        @media (max-width: 100px) {
-            footer p {
-                font-size: 1rem;
+        footer .copy {
+            color: var(--sub);
+            font-size: 0.85rem;
+            margin-top: 10px;
+        }
+
+        /* ── SCROLL ANIMATIONS ── */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 600px) {
+            header nav {
+                display: none;
             }
 
-            .footer-link {
-                font-size: 1rem;
-                padding: 10px;
-                /* Adjust padding on mobile */
+            header {
+                padding: 0 20px;
             }
 
-            /* Change footer-links layout to column */
-            .footer-links {
-                flex-direction: column;
-                /* Stack the items in a column */
-                align-items: center;
-                /* Center align the links */
-                gap: 15px;
-                /* Adjust gap between items */
+            .hamburger {
+                display: flex;
             }
 
-            .footer-link {
-                width: 100%;
-                /* Make links take full width of container */
-                text-align: center;
-                /* Center text in the link */
+            header nav {
+                padding-right: 0;
             }
 
-            #profile img {
-                /* width: 180px;
-            height: 180px; */
-                /* border-radius: 50%; */
-                /* border: 2px solid #3122ff; */
-                /* box-shadow: 0 8px 20px rgba(65, 100, 239, 0.4); */
-                /* transition: transform 0.3s ease; */
-                margin-top: 100px;
+            section {
+                padding: 70px 20px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .theme-toggle {
+                width: 36px;
+                height: 36px;
+                top: 14px;
+                right: 60px;
             }
         }
     </style>
@@ -457,288 +684,554 @@
 
 <body>
 
-    <!-- Header Section -->
+    <!-- Header -->
     <header>
-        <h2>My Portfolio</h2>
-
-        <p>App Developer | Front-End Enthusiast</p>
+        <span class="logo">Sanjay Gautam</span>
+        <nav>
+            <a href="#hero">Home</a>
+            <a href="#experience">Experience</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="hamburger" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </header>
 
-    <!-- Theme Toggle Button (Fixed to the top-right corner) -->
-    <button class="theme-toggle" onclick="toggleTheme()"></button>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#hero" onclick="toggleMobileMenu()">Home</a>
+        <a href="#experience" onclick="toggleMobileMenu()">Experience</a>
+        <a href="#skills" onclick="toggleMobileMenu()">Skills</a>
+        <a href="#projects" onclick="toggleMobileMenu()">Projects</a>
+        <a href="#contact" onclick="toggleMobileMenu()">Contact</a>
+    </div>
 
-    <!-- Portfolio Section Title -->
-    <!-- <section>
-    <h2 style="text-align:center; margin-top: 120px;">Portfolio</h2>
-  </section> -->
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"></button>
 
-    <!-- Profile Section -->
-    <section id="profile">
-        <img src="https://avatars.githubusercontent.com/u/195903050?s=400&u=d44175e2c49177128122aceaaadae8ab07ef2465&v=4"
-            alt="Profile Picture">
-        <div>
-            <h2>Sanjay Gautam</h2>
-            <p>React Native Developer | Mobile Application | Android | iOS </p>
-            <a href="#Contact Me" style="text-decoration: none ;">
-                <h4>Contact Me:</h4>
-            </a>
-            <section id="about-me">
-                <h3>About Me :</h3>
-                <p>
-                    I am an enthusiastic React Native Developer with a strong foundation in HTML, CSS, and JavaScript.
-                    Although I am a fresher with 6 month Experience, I am highly motivated and eager to learn. I am
-                    actively seeking for
-                    job
-                    opportunity where I can apply my skills, gain hands-on experience, and contribute to real-world
-                    projects.
-                    I am passionate about mobile app development and always strive to stay updated with the latest
-                    technologies.
-                </p>
-            </section>
-
-
-            <!-- Experience Section -->
-            <section id="experience">
-                <h3>Experience :</h3>
-                <p><strong>6 Months.</strong></p>
-                <h4>Learning & Development</h4>
-                <p>Ongoing :</p>
-                <ol>
-                    <li>Currently enhancing my skills in React Native, JavaScript, and modern mobile development
-                        frameworks.</li>
-                    <li>Building personal projects to apply my knowledge and gain practical experience.</li>
-
-
-                </ol>
-            </section>
+    <!-- Hero / Profile -->
+    <section id="hero">
+        <div class="avatar-wrap">
+            <img src="https://avatars.githubusercontent.com/u/195903050?s=400&u=d44175e2c49177128122aceaaadae8ab07ef2465&v=4"
+                alt="Sanjay Gautam">
+            <span class="badge">Available</span>
+        </div>
+        <h1>Sanjay Gautam</h1>
+        <p class="tagline">React Native Developer &nbsp;·&nbsp; Mobile App &nbsp;·&nbsp; Android &amp; iOS</p>
+        <p class="about-text">
+            Passionate React Native Developer with <strong>1.5 years of experience</strong> building cross-platform
+            mobile applications.
+            Skilled in JavaScript, TypeScript, Redux Toolkit, Firebase, and REST APIs. I love crafting smooth,
+            user-friendly apps and staying up-to-date with the latest mobile technologies.
+        </p>
+        <div class="hero-btns">
+            <a href="#projects" class="btn btn-primary">View Projects</a>
+            <a href="#contact" class="btn btn-outline">Contact Me</a>
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- Experience -->
+    <section id="experience">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"><i class="fas fa-briefcase"></i></div>
+                <div class="timeline-content">
+                    <h3>React Native Developer</h3>
+                    <span class="duration">1.5 Years &nbsp;·&nbsp; 2024 – Present</span>
+                    <p>Working on cross-platform mobile applications for Android and iOS using React Native, TypeScript,
+                        and modern state management solutions.</p>
+                    <ul>
+                        <li>Built and shipped multiple production-grade apps including Saathi, Invest &amp; Earn, and
+                            CoffeeMate.</li>
+                        <li>Integrated REST APIs and Firebase for real-time data and authentication.</li>
+                        <li>Managed global state with Redux Toolkit; handled async flows with Axios.</li>
+                        <li>Collaborated on UI/UX improvements and performance optimizations.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"><i class="fas fa-laptop-code"></i></div>
+                <div class="timeline-content">
+                    <h3>Learning &amp; Personal Projects</h3>
+                    <span class="duration">Ongoing</span>
+                    <p>Continuously enhancing skills through personal projects, open-source contributions, and exploring
+                        new React Native libraries and best practices.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"><i class="fas fa-rocket"></i></div>
+                <div class="timeline-content">
+                    <h3>Live Production Apps</h3>
+                    <span class="duration">13+ Apps Live</span>
+                    <p>Successfully deployed and maintained 13+ production apps on Google Play Store and Apple App Store. Actively managing user base and implementing continuous improvements based on feedback.</p>
+                    <ul>
+                        <li>Apps include Maheshari Jagat, RaktSetu/Jeevan Setu, Saathi (health awareness), Dream Vision Play (entertainment platform), Manomay Corewear, and multiple quiz applications.</li>
+                        <li>Handling app updates, bug fixes, and feature enhancements for both iOS and Android platforms.</li>
+                        <li>Monitoring app performance, user engagement metrics, and reviews for continuous optimization.</li>
+                        <li>Implementing in-app monetization strategies, analytics tracking, and push notifications.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Skills -->
     <section id="skills">
-        <h2>Skills :</h2>
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-wrapper">
 
-        <div class="skill-card">
-            <div style="display: flex;">
-                <img src="https://reactnative.dev/img/header_logo.svg" alt="Firebase"
-                    style="width: 30px; height: 30px; margin-top:  23px; margin-right: 10px;">
-
-                <h3> React Native</h3>
-
-            </div>
-        </div>
-
-        <div class="skill-card">
-            <div style="display: flex;">
-                <img src="https://img.icons8.com/?size=96&id=7gdY5qNXaKC0&format=png" alt="Firebase"
-                    style="width: 30px; height: 30px; margin-top:  23px; margin-right: 10px;">
-
-                <h3> CSS</h3>
-
-            </div>
-        </div>
-
-        <div class="skill-card">
-            <div style="display: flex;">
-                <img src="https://img.icons8.com/?size=96&id=108784&format=png" alt="Firebase"
-                    style="width: 30px; height: 30px; margin-top:  23px; margin-right: 10px;">
-                <h3> JavaScript</h3>
+            <!-- Core -->
+            <div class="fade-in">
+                <p class="skill-group-title">Core</p>
+                <div class="skills-grid">
+                    <div class="skill-card"><img src="https://reactnative.dev/img/header_logo.svg"
+                            alt="React Native"><span>React Native</span></div>
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=108784&format=png"
+                            alt="JavaScript"><span>JavaScript</span></div>
+                    <div class="skill-card"><img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Typescript.svg/250px-Typescript.svg.png"
+                            alt="TypeScript"><span>TypeScript</span></div>
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=EAUyKy3IwmqM&format=png"
+                            alt="HTML"><span>HTML</span></div>
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=7gdY5qNXaKC0&format=png"
+                            alt="CSS"><span>CSS</span></div>
+                </div>
             </div>
 
-        </div>
-        <div class="skill-card">
-            <div style="display: flex;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Typescript.svg/250px-Typescript.svg.png"
-                    alt="Firebase" style="width: 30px; height: 30px; margin-top:  23px; margin-right: 10px;">
-                <h3> TypeScript</h3>
+            <!-- Backend & DB -->
+            <div class="fade-in">
+                <p class="skill-group-title">Backend &amp; DB</p>
+                <div class="skills-grid">
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=hsPbhkOH4FMe&format=png"
+                            alt="Node.js"><span>Node.js</span></div>
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=kg46nzoJrmTR&format=png"
+                            alt="Express.js"><span>Express.js</span></div>
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=74402&format=png"
+                            alt="MongoDB"><span>MongoDB</span></div>
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=62452&format=png"
+                            alt="Firebase"><span>Firebase</span></div>
+                    <div class="skill-card"><img
+                            src="https://www.iconpacks.net/icons/free-icons-6/free-rest-api-blue-logo-icon-22098.png"
+                            alt="REST API"><span>REST API</span></div>
+                    <div class="skill-card"><img src="https://www.vectorlogo.zone/logos/axios/axios-icon.svg"
+                            alt="Axios"><span>Axios</span></div>
+                </div>
+            </div>
+
+            <!-- State & Storage -->
+            <div class="fade-in">
+                <p class="skill-group-title">State &amp; Storage</p>
+                <div class="skills-grid">
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=jD-fJzVguBmw&format=png"
+                            alt="Redux Toolkit"><span>Redux Toolkit</span></div>
+                    <div class="skill-card"><img src="https://reactnative.dev/img/header_logo.svg"
+                            alt="Context API"><span>Context API</span></div>
+                    <div class="skill-card"><img src="https://tanstack.com/favicon.ico" alt="React Query"><span>React
+                            Query</span></div>
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=62452&format=png"
+                            alt="AsyncStorage"><span>AsyncStorage</span></div>
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=62452&format=png"
+                            alt="Secure Storage"><span>Secure Storage</span></div>
+                </div>
+            </div>
+
+            <!-- Navigation & UI -->
+            <div class="fade-in">
+                <p class="skill-group-title">Navigation &amp; UI</p>
+                <div class="skills-grid">
+                    <div class="skill-card"><img src="https://reactnavigation.org/img/spiro.svg"
+                            alt="React Navigation"><span>React Navigation</span></div>
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=NfbyHexzVEDk&format=png"
+                            alt="React.js"><span>React.js</span></div>
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=123603&format=png"
+                            alt="NativeWind"><span>NativeWind</span></div>
+                </div>
+            </div>
+
+            <!-- Dev Tools -->
+            <div class="fade-in">
+                <p class="skill-group-title">Dev Tools</p>
+                <div class="skills-grid">
+                    <div class="skill-card"><img
+                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xcode/xcode-original.svg"
+                            alt="Xcode"><span>Xcode</span></div>
+                    <div class="skill-card"><img
+                            src="https://icon.icepanel.io/Technology/png-shadow-512/Android-Studio.png"
+                            alt="Android Studio"><span>Android Studio</span></div>
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=9OGIyU8hrxW5&format=png"
+                            alt="VS Code"><span>VS Code</span></div>
+                    <div class="skill-card"><img src="https://cdn.worldvectorlogo.com/logos/expo-1.svg"
+                            alt="Expo"><span>Expo</span></div>
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=13822&format=png"
+                            alt="Postman"><span>Postman</span></div>
+                    <div class="skill-card"><img src="https://cdn-icons-png.flaticon.com/128/1051/1051326.png"
+                            alt="Git"><span>Git &amp; GitHub</span></div>
+                </div>
+            </div>
+
+            <!-- Services -->
+            <div class="fade-in">
+                <p class="skill-group-title">Services</p>
+                <div class="skills-grid">
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=63306&format=png"
+                            alt="FCM"><span>Push Notifications</span></div>
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=67346&format=png"
+                            alt="Google Maps"><span>Google Maps API</span></div>
+                    <div class="skill-card"><img src=" https://img.icons8.com/?size=96&id=67346&format=png"
+                            alt="Google Maps"><span>API Integration</span></div>
+                    <div class="skill-card"><img src=" https://img.icons8.com/?size=96&id=67346&format=png"
+                            alt="Google Maps"><span>UI/UX Design Implementation</span></div>
+                    <div class="skill-card"><img src=" https://img.icons8.com/?size=96&id=67346&format=png"
+                            alt="Google Maps"><span>AI Integration</span></div>
+                </div>
+            </div>
+
+            <!-- Design & Management -->
+            <div class="fade-in">
+                <p class="skill-group-title">Design &amp; Management</p>
+                <div class="skills-grid">
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=zfHRZ6i1Wg0U&format=png"
+                            alt="Figma"><span>Figma</span></div>
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=oROcPah5ues6&format=png"
+                            alt="Jira"><span>Jira</span></div>
+                    <div class="skill-card"><img src="https://cdn.worldvectorlogo.com/logos/trello.svg"
+                            alt="Trello"><span>Trello</span></div>
+                </div>
             </div>
 
         </div>
-
-        <div class="skill-card">
-            <div style="display: flex;">
-                <img src="https://img.icons8.com/?size=96&id=EAUyKy3IwmqM&format=png" alt="Firebase"
-                    style="width: 30px; height: 30px; margin-top:  23px; margin-right: 10px;">
-                <h3> HTML</h3>
-
-            </div>
-        </div>
-
-        <div class="skill-card">
-            <div style="display: flex;">
-                <img src="https://img.icons8.com/?size=96&id=62452&format=png" alt="Firebase"
-                    style="width: 30px; height: 30px; margin-top:  23px; margin-right: 10px;">
-                <h3> Firebase</h3>
-
-            </div>
-
-        </div>
-
-        <div class="skill-card">
-
-            <div style="display: flex;">
-                <img src="https://img.icons8.com/?size=96&id=jD-fJzVguBmw&format=png" alt="Firebase"
-                    style="width: 30px; height: 30px; margin-top:  23px; margin-right: 10px;">
-
-                <h3> Redux Toolkit</h3>
-                </a>
-            </div>
-
-        </div>
-
-        <div class="skill-card">
-            <div style="display: flex;">
-                <img src="https://www.vectorlogo.zone/logos/axios/axios-icon.svg" alt="Firebase"
-                    style="width: 30px; height: 30px; margin-top:  23px; margin-right: 10px;">
-
-                <h3>Axios</h3>
-                </a>
-            </div>
-
-        </div>
-
-        <div class="skill-card">
-            <div style="display: flex;">
-                <img src="https://www.iconpacks.net/icons/free-icons-6/free-rest-api-blue-logo-icon-22098.png"
-                    alt="Firebase" style="width: 30px; height: 30px; margin-top:  23px; margin-right: 10px;">
-
-                <h3>REST API</h3>
-                </a>
-            </div>
-
-        </div>
-        <div class="skill-card">
-            <div style="display: flex;">
-                <img src="https://cdn-icons-png.flaticon.com/128/1051/1051326.png" alt="Firebase"
-                    style="width: 30px; height: 30px; margin-top:  23px; margin-right: 10px;">
-
-                <h3>Git & GitHub</h3>
-                </a>
-            </div>
-
-        </div>
-
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects -->
     <section id="projects">
-        <h2>Projects :</h2>
-        <div class="project">
-            <h3>Notes App</h3>
-            <p>A React Native mobile app to manage notes with features like add, edit, and delete notes : Using Redux
-            </p>
+        <h2 class="section-title">Projects</h2>
+
+        <!-- Personal Projects -->
+        <div class="projects-category fade-in">
+            <div class="category-label">
+                <span class="category-icon">🧑‍💻</span>
+                <span>Personal Projects</span>
+                <span class="category-badge">Android</span>
+            </div>
+            <div class="projects-grid">
+
+                <div class="project fade-in">
+                    <div class="project-top">
+                        <div class="project-icon">💬</div>
+                        <a href="#" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <h3>Chattify</h3>
+                    <p>A modern messaging app for seamless communication.</p>
+                    <span class="project-tag">React Native</span>
+                </div>
+
+                <div class="project fade-in">
+                    <div class="project-top">
+                        <div class="project-icon">☕</div>
+                        <a href="https://github.com/MrSanjayGautam007/CoffeeMateApp.git" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <h3>CoffeeMate App</h3>
+                    <p>A coffee shop management app that helps streamline operations and enhance customer experience.
+                    </p>
+                    <span class="project-tag">React Native</span>
+                </div>
+
+                <div class="project fade-in">
+                    <div class="project-top">
+                        <div class="project-icon">💸</div>
+                        <a href="#" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <h3>Expense Tracker</h3>
+                    <p>A simple and effective app for tracking expenses and managing budgets.</p>
+                    <span class="project-tag">React Native</span>
+                </div>
+
+                <div class="project fade-in">
+                    <div class="project-top">
+                        <div class="project-icon">🎬</div>
+                        <a href="https://github.com/MrSanjayGautam007/Expense-Tracker.git" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <h3>MovieChatBot</h3>
+                    <p>A chatbot for movie recommendations and information.</p>
+                    <span class="project-tag">React Native</span>
+                </div>
+
+                <div class="project fade-in">
+                    <div class="project-top">
+                        <div class="project-icon">✅</div>
+                        <a href="#" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <h3>My Task</h3>
+                    <p>A task management app to help users organize and prioritize their daily activities.</p>
+                    <span class="project-tag">React Native</span>
+                </div>
+
+                <div class="project fade-in">
+                    <div class="project-top">
+                        <div class="project-icon">🌤️</div>
+                        <a href="#" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <h3>Weather App</h3>
+                    <p>A simple and effective app for tracking weather conditions and forecasts.</p>
+                    <span class="project-tag">API Integration</span>
+                </div>
+
+            </div>
         </div>
-        <div class="project">
-            <h3>Weather App</h3>
-            <p>A mobile app that provides real-time weather data using a weather API.</p>
-        </div>
-        <div class="project">
-            <a href="" style="text-decoration: none;" target="_blank">
-                <h3>Ecommerce App</h3>
-            </a>
-            <p>An Ecommerce app built with React Native and Axios For API Calls</p>
-        </div>
-        <div class="project">
-            <a href="" style="text-decoration: none;" target="_blank">
-                <h3>User Details App</h3>
-            </a>
-            <p>An app that fetch user details from backend servers through API calls</p>
-        </div>
-        <div class="project">
-            <a href="" style="text-decoration: none;" target="_blank">
-                <h3>Saathi App</h3>
-            </a>
-            <p>An app that fetch users Appointments with Doctors and Notify them for Appointments and Self Awareness
-            </p>
-        </div>
-        <div class="project">
-            <a href="" style="text-decoration: none;" target="_blank">
-                <h3>Expense Tracker</h3>
-            </a>
-            <p>An app that track the users overall expenses </p>
-        </div>
-        <div class="project">
-            <a href="" style="text-decoration: none;" target="_blank">
-                <h3>Invest and Earn App</h3>
-            </a>
-            <p>An app that helps users to invest their money and earn rewards </p>
-        </div>
-        <div class="project">
-            <a href="" style="text-decoration: none;" target="_blank">
-                <h3>CoffeeMate App</h3>
-            </a>
-            <p>An app where user can order coffee from app and beans also added </p>
-        </div>
-        <div class="project">
-            <a href="" style="text-decoration: none;" target="_blank">
-                <h3>My Task App</h3>
-            </a>
-            <p>An app where user add their task and delete updated them </p>
+
+        <!-- Live Production Projects -->
+        <div class="projects-category fade-in">
+            <div class="category-label">
+                <span class="category-icon">🚀</span>
+                <span>Live Production Apps</span>
+                <span class="category-badge live">Live</span>
+            </div>
+            <div class="projects-grid">
+
+                <div class="project fade-in">
+                    <div class="project-top">
+                        <div class="project-icon">🥛</div>
+                        <a href="https://play.google.com/store/apps/details?id=com.milkmanagementapp"
+                            class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <h3>Doodhiya Milk Management</h3>
+                    <p>Doodhiya Milk Management is a comprehensive solution for managing milk distribution and sales.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Android</span>
+                    </div>
+                </div>
+
+                <div class="project fade-in">
+                    <div class="project-top">
+                        <div class="project-icon">🏥</div>
+                        <a href="#" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <h3>Saathi App</h3>
+                    <p>Saathi App is a self awareness app designed to help users track their mental health and
+                        well-being.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Android</span>
+                    </div>
+                </div>
+
+                <div class="project fade-in">
+                    <div class="project-top">
+                        <div class="project-icon">🛒</div>
+                        <a href="https://github.com/MrSanjayGautam007/Ecommerce-Amritsariya.git" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <h3>Amritsariya Ecommerce</h3>
+                    <p>Amritsariya Ecommerce is an online platform that offers a wide range of products at competitive
+                        prices.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Android</span>
+                    </div>
+                </div>
+
+                <div class="project fade-in">
+                    <div class="project-top">
+                        <div class="project-icon">🎮</div>
+                        <a href="https://play.google.com/store/apps/details?id=com.dreamvision.talent"
+                            class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <h3>Dream Vision Play</h3>
+                    <p>Dream Vision is an entertainment platform designed for artists, performers, and audiences who
+                        love dance, singing, drama, and comedy.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Android</span>
+
+                    </div>
+                </div>
+                <div class="project fade-in">
+                    <div class="project-top">
+                        <div class="project-icon">🎮</div>
+                        <a href="https://apps.apple.com/us/app/dream-vision-play/id6761828885" class="project-link"
+                            target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <h3>Dream Vision Play</h3>
+                    <p>Dream Vision is an entertainment platform designed for artists, performers, and audiences who
+                        love dance, singing, drama, and comedy.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">iOS</span>
+
+                    </div>
+                </div>
+
+                <div class="project fade-in">
+                    <div class="project-top">
+                        <div class="project-icon">👕</div>
+                        <a href="https://apps.apple.com/us/app/manomay-corewear/id6760581794" class="project-link"
+                            target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <h3>Manomay Corewear</h3>
+                    <p>Manomay Corewear is a fashion brand that offers high-quality, stylish clothing for men and women.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag ios">iOS</span>
+                    </div>
+                </div>
+
+                <div class="project fade-in">
+                    <div class="project-top">
+                        <div class="project-icon">🛣️</div>
+                        <a href="https://play.google.com/store/apps/details?id=com.exam.roadsafetyquizapp"
+                            class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <h3>Road Safety Quiz</h3>
+                    <p>Road Safety Quiz is an app designed to test and improve knowledge about road safety regulations
+                        and practices.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Android</span>
+                    </div>
+                </div>
+
+                <div class="project fade-in">
+                    <div class="project-top">
+                        <div class="project-icon">📚</div>
+                        <a href="https://play.google.com/store/apps/details?id=com.vpipl.exam.bhagatsingh_quiz"
+                            class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <h3>BVP Bhagat Singh Quiz</h3>
+                    <p>BVP Bhagat Singh Quiz is an app designed to test and improve knowledge about the life and
+                        contributions of Bhagat Singh.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Android</span>
+                    </div>
+                </div>
+
+                <div class="project fade-in">
+                    <div class="project-top">
+                        <div class="project-icon">☀️</div>
+                        <a href="#" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <h3>Balaji Solar</h3>
+                    <p>Balaji Solar is a renewable energy company that provides solar panel installation and maintenance
+                        services.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Android</span>
+                    </div>
+                </div>
+
+                <div class="project fade-in">
+                    <div class="project-top">
+                        <div class="project-icon">🚑</div>
+                        <a href="https://play.google.com/store/apps/details?id=com.jeevansetu.app" class="project-link"
+                            target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <h3>Raksetu / Jeevan Setu</h3>
+                    <p>Its as blood request platform for connecting donors and recipients.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Android</span>
+                    </div>
+                </div>
+
+                <div class="project fade-in">
+                    <div class="project-top">
+                        <div class="project-icon">📰</div>
+                        <a href="#" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <h3>Maheshwari Jagat News</h3>
+                    <p>Its a news app that provides the latest updates and information.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Android</span>
+                    </div>
+                </div>
+
+                <div class="project fade-in">
+                    <div class="project-top">
+                        <div class="project-icon">📱</div>
+                        <a href="#" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <h3>One Touch All Solution</h3>
+                    <p>Its a comprehensive app that provides various solutions for different needs.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Android</span>
+                    </div>
+                </div>
+
+                <div class="project fade-in">
+                    <div class="project-top">
+                        <div class="project-icon">🌐</div>
+                        <a href="#" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <h3>Rwin Global India</h3>
+                    <p>Its a global business app that provides various services and solutions.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Android</span>
+                        <span class="project-tag ios">iOS</span>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
-    </footer> 
-    <footer>
-        <!-- <p>Contact Me:</p> -->
-        <h2 id="Contact Me">Contact Me:</h2>
+
+    <!-- Footer / Contact -->
+    <footer id="contact">
+        <h2>Contact Me</h2>
         <div class="footer-links">
-            <!-- Email link with icon -->
             <a href="mailto:sanjaygautam0612@gmail.com" class="footer-link">
                 <i class="fas fa-envelope"></i> Gmail
             </a>
-            <!-- GitHub link with icon -->
             <a href="https://github.com/MrSanjayGautam007" target="_blank" class="footer-link">
                 <i class="fab fa-github"></i> GitHub
             </a>
-            <!-- LinkedIn link with icon -->
             <a href="https://www.linkedin.com/in/sanjay-gautam-28a539348/" target="_blank" class="footer-link">
                 <i class="fab fa-linkedin"></i> LinkedIn
             </a>
-            <!-- Phone link with icon -->
             <a href="tel:+919598908555" class="footer-link">
                 <i class="fas fa-phone-alt"></i> Call Me
             </a>
         </div>
+        <p class="copy">© 2025 Sanjay Gautam. All rights reserved.</p>
     </footer>
 
-    <!-- Internal JavaScript -->
     <script>
-
-        // // Set default theme to dark
-        // document.body.classList.remove('light-theme');
-
-        // // Toggle between dark and light themes
-        // function toggleTheme() {
-        //     document.body.classList.toggle('light-theme');
-        // }
-
-        // Function to check and apply the saved theme
         function applyStoredTheme() {
-            const savedTheme = localStorage.getItem('theme'); // Get theme from localStorage
+            const savedTheme = localStorage.getItem('theme');
             if (savedTheme) {
-                document.body.classList.add(savedTheme); // Apply the saved theme class (light-theme or dark-theme)
+                document.body.classList.add(savedTheme);
             } else {
-                // If no theme is stored, set default to dark theme
                 document.body.classList.add('dark-theme');
             }
         }
 
-        // Function to toggle between dark and light themes
         function toggleTheme() {
             if (document.body.classList.contains('dark-theme')) {
-                // Switch to light theme
                 document.body.classList.remove('dark-theme');
                 document.body.classList.add('light-theme');
-                localStorage.setItem('theme', 'light-theme'); // Store the selected theme
+                localStorage.setItem('theme', 'light-theme');
             } else {
-                // Switch to dark theme
                 document.body.classList.remove('light-theme');
                 document.body.classList.add('dark-theme');
-                localStorage.setItem('theme', 'dark-theme'); // Store the selected theme
+                localStorage.setItem('theme', 'dark-theme');
             }
         }
 
-        // Apply the stored theme on page load
+        function toggleMobileMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        }
+
         applyStoredTheme();
+
+        // Scroll fade-in animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 
 </body>
