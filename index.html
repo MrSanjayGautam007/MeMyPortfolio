@@ -574,6 +574,14 @@
             color: #aaa;
         }
 
+        .app-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .app-link:hover { text-decoration: underline; }
+
         /* ── FOOTER ── */
         footer {
             background-color: var(--bg);
@@ -634,7 +642,28 @@
             margin-top: 10px;
         }
 
-        /* ── SCROLL ANIMATIONS ── */
+        /* ── SCROLL TO TOP ── */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 20px;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3122ff, #00adff);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(0,173,255,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .scroll-top:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,173,255,0.7); }
+        .scroll-top.visible { display: flex; }
         .fade-in {
             opacity: 0;
             transform: translateY(24px);
@@ -723,7 +752,7 @@
         <h1>Sanjay Gautam</h1>
         <p class="tagline">React Native Developer &nbsp;·&nbsp; Mobile App &nbsp;·&nbsp; Android &amp; iOS</p>
         <p class="about-text">
-            Passionate React Native Developer with <strong>1.5 years of experience</strong> building cross-platform
+            Passionate React Native Developer with <strong>1.5+ years of experience</strong> building cross-platform
             mobile applications.
             Skilled in JavaScript, TypeScript, Redux Toolkit, Firebase, and REST APIs. I love crafting smooth,
             user-friendly apps and staying up-to-date with the latest mobile technologies.
@@ -731,6 +760,7 @@
         <div class="hero-btns">
             <a href="#projects" class="btn btn-primary">View Projects</a>
             <a href="#contact" class="btn btn-outline">Contact Me</a>
+            <a href="#" class="btn btn-outline" download><i class="fas fa-download"></i> Download Resume</a>
         </div>
     </section>
 
@@ -743,11 +773,11 @@
                 <div class="timeline-dot"><i class="fas fa-briefcase"></i></div>
                 <div class="timeline-content">
                     <h3>React Native Developer</h3>
-                    <span class="duration">1.5 Years &nbsp;·&nbsp; 2024 – Present</span>
+                    <span class="duration">1.5+ Years &nbsp;·&nbsp; 2024 – Present</span>
                     <p>Working on cross-platform mobile applications for Android and iOS using React Native, TypeScript,
                         and modern state management solutions.</p>
                     <ul>
-                        <li>Built and shipped multiple production-grade apps including Saathi, Invest &amp; Earn, and
+                        <li>Built multiple production-grade apps including Chattify, MovieChatBot, and
                             CoffeeMate.</li>
                         <li>Integrated REST APIs and Firebase for real-time data and authentication.</li>
                         <li>Managed global state with Redux Toolkit; handled async flows with Axios.</li>
@@ -837,16 +867,13 @@
             <div class="fade-in">
                 <p class="skill-group-title">State &amp; Storage</p>
                 <div class="skills-grid">
-                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=jD-fJzVguBmw&format=png"
-                            alt="Redux Toolkit"><span>Redux Toolkit</span></div>
-                    <div class="skill-card"><img src="https://reactnative.dev/img/header_logo.svg"
-                            alt="Context API"><span>Context API</span></div>
-                    <div class="skill-card"><img src="https://tanstack.com/favicon.ico" alt="React Query"><span>React
-                            Query</span></div>
-                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=62452&format=png"
-                            alt="AsyncStorage"><span>AsyncStorage</span></div>
-                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=62452&format=png"
-                            alt="Secure Storage"><span>Secure Storage</span></div>
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=jD-fJzVguBmw&format=png" alt="Redux Toolkit"><span>Redux Toolkit</span></div>
+                    <div class="skill-card"><img src="https://reactnative.dev/img/header_logo.svg" alt="Context API"><span>Context API</span></div>
+                    <div class="skill-card"><img src="https://tanstack.com/favicon.ico" alt="TanStack Query"><span>TanStack Query</span></div>
+                    <div class="skill-card"><img src="https://tanstack.com/favicon.ico" alt="React Query"><span>React Query</span></div>
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=62452&format=png" alt="AsyncStorage"><span>AsyncStorage</span></div>
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=62452&format=png" alt="Secure Storage"><span>Secure Storage</span></div>
+                    <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="MMKV"><span>MMKV Storage</span></div>
                 </div>
             </div>
 
@@ -854,12 +881,10 @@
             <div class="fade-in">
                 <p class="skill-group-title">Navigation &amp; UI</p>
                 <div class="skills-grid">
-                    <div class="skill-card"><img src="https://reactnavigation.org/img/spiro.svg"
-                            alt="React Navigation"><span>React Navigation</span></div>
-                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=NfbyHexzVEDk&format=png"
-                            alt="React.js"><span>React.js</span></div>
-                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=123603&format=png"
-                            alt="NativeWind"><span>NativeWind</span></div>
+                    <div class="skill-card"><img src="https://reactnavigation.org/img/spiro.svg" alt="React Navigation"><span>React Navigation</span></div>
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=NfbyHexzVEDk&format=png" alt="React.js"><span>React.js</span></div>
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=123603&format=png" alt="NativeWind"><span>NativeWind</span></div>
+                    <div class="skill-card"><img src="https://cdn.worldvectorlogo.com/logos/tailwindcss.svg" alt="Tailwind CSS"><span>Tailwind CSS</span></div>
                 </div>
             </div>
 
@@ -892,12 +917,13 @@
                             alt="FCM"><span>Push Notifications</span></div>
                     <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=67346&format=png"
                             alt="Google Maps"><span>Google Maps API</span></div>
-                    <div class="skill-card"><img src=" https://img.icons8.com/?size=96&id=67346&format=png"
-                            alt="Google Maps"><span>API Integration</span></div>
-                    <div class="skill-card"><img src=" https://img.icons8.com/?size=96&id=67346&format=png"
-                            alt="Google Maps"><span>UI/UX Design Implementation</span></div>
-                    <div class="skill-card"><img src=" https://img.icons8.com/?size=96&id=67346&format=png"
-                            alt="Google Maps"><span>AI Integration</span></div>
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=21278&format=png" alt="API Integration"><span>API Integration</span></div>
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=66163&format=png" alt="UI/UX"><span>UI/UX Design Implementation</span></div>
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=55494&format=png" alt="AI"><span>AI Integration</span></div>
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=24709&format=png" alt="In-App Updates"><span>In-App Updates</span></div>
+                    <div class="skill-card"><img src="https://img.icons8.com/?size=96&id=60014&format=png" alt="In-App Review"><span>In-App Review</span></div>
+                    <div class="skill-card"><img src="https://cdn.worldvectorlogo.com/logos/expo-1.svg" alt="OTA Updates"><span>OTA Updates</span></div>
+                    <div class="skill-card"><img src="https://cdn.worldvectorlogo.com/logos/razorpay.svg" alt="Razorpay"><span>Razorpay</span></div>
                 </div>
             </div>
 
@@ -952,7 +978,7 @@
                     <span class="project-tag">React Native</span>
                 </div>
 
-                <div class="project fade-in">
+                <!-- <div class="project fade-in">
                     <div class="project-top">
                         <div class="project-icon">💸</div>
                         <a href="https://github.com/MrSanjayGautam007/Expense-Tracker.git" class="project-link"
@@ -961,7 +987,7 @@
                     <h3>Expense Tracker</h3>
                     <p>A simple and effective app for tracking expenses and managing budgets.</p>
                     <span class="project-tag">React Native</span>
-                </div>
+                </div> -->
 
                 <div class="project fade-in">
                     <div class="project-top">
@@ -973,7 +999,7 @@
                     <span class="project-tag">React Native</span>
                 </div>
 
-                <div class="project fade-in">
+                <!-- <div class="project fade-in">
                     <div class="project-top">
                         <div class="project-icon">✅</div>
                         <a href="#" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
@@ -981,7 +1007,7 @@
                     <h3>My Task</h3>
                     <p>A task management app to help users organize and prioritize their daily activities.</p>
                     <span class="project-tag">React Native</span>
-                </div>
+                </div> -->
 
                 <div class="project fade-in">
                     <div class="project-top">
@@ -1019,7 +1045,7 @@
                     </div>
                 </div>
 
-                <div class="project fade-in">
+                <!-- <div class="project fade-in">
                     <div class="project-top">
                         <div class="project-icon">🏥</div>
                         <a href="#" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
@@ -1030,7 +1056,7 @@
                     <div class="project-tags">
                         <span class="project-tag">Android</span>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="project fade-in">
                     <div class="project-top">
@@ -1105,33 +1131,22 @@
 
                 <div class="project fade-in">
                     <div class="project-top">
-                        <div class="project-icon">🛣️</div>
-                        <a href="https://play.google.com/store/apps/details?id=com.exam.roadsafetyquizapp"
-                            class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                        <div class="project-icon">🧠</div>
+                        <i class="fas fa-external-link-alt" style="color:var(--sub);font-size:0.85rem;"></i>
                     </div>
-                    <h3>Road Safety Quiz</h3>
-                    <p>Road Safety Quiz is an app designed to test and improve knowledge about road safety regulations
-                        and practices.</p>
+                    <h3>Quiz Apps</h3>
+                    <p>
+                        <a href="https://play.google.com/store/apps/details?id=com.exam.roadsafetyquizapp" target="_blank" class="app-link">Road Safety Quiz</a>,
+                        <a href="https://play.google.com/store/apps/details?id=com.vpipl.exam.bhagatsingh_quiz" target="_blank" class="app-link">BVP Bhagat Singh Quiz</a>, and
+                        <a href="https://play.google.com/store/apps/details?id=com.vpipl.exam.parishadkojaano_quiz" target="_blank" class="app-link">BVP Parishad Ko Jaano</a>
+                        — each designed to test knowledge on specific topics.
+                    </p>
                     <div class="project-tags">
                         <span class="project-tag">Android</span>
                     </div>
                 </div>
 
-                <div class="project fade-in">
-                    <div class="project-top">
-                        <div class="project-icon">📚</div>
-                        <a href="https://play.google.com/store/apps/details?id=com.vpipl.exam.bhagatsingh_quiz"
-                            class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-                    </div>
-                    <h3>BVP Bhagat Singh Quiz</h3>
-                    <p>BVP Bhagat Singh Quiz is an app designed to test and improve knowledge about the life and
-                        contributions of Bhagat Singh.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Android</span>
-                    </div>
-                </div>
-
-                <div class="project fade-in">
+                <!-- <div class="project fade-in">
                     <div class="project-top">
                         <div class="project-icon">☀️</div>
                         <a href="#" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
@@ -1142,7 +1157,7 @@
                     <div class="project-tags">
                         <span class="project-tag">Android</span>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="project fade-in">
                     <div class="project-top">
@@ -1182,8 +1197,20 @@
                         <span class="project-tag">Android</span>
                     </div>
                 </div>
-
                 <div class="project fade-in">
+                    <div class="project-top">
+                        <div class="project-icon">📱</div>
+                        <a href="https://play.google.com/store/apps/details?id=com.kalyaniapp.app"
+                            class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <h3>Kalyani App</h3>
+                    <p>Its a comprehensive app that provides various services, quiz and job opportunities to women.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Android</span>
+                    </div>
+                </div>
+
+                <!-- <div class="project fade-in">
                     <div class="project-top">
                         <div class="project-icon">🌐</div>
                         <a href="#" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
@@ -1194,7 +1221,7 @@
                         <span class="project-tag">Android</span>
                         <span class="project-tag ios">iOS</span>
                     </div>
-                </div>
+                </div> -->
 
             </div>
         </div>
@@ -1217,8 +1244,13 @@
                 <i class="fas fa-phone-alt"></i> Call Me
             </a>
         </div>
-        <p class="copy">© 2025 Sanjay Gautam. All rights reserved.</p>
+        <p class="copy">© 2026 Sanjay Gautam. All rights reserved.</p>
     </footer>
+
+    <!-- Scroll To Top -->
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
     <script>
         function applyStoredTheme() {
@@ -1248,6 +1280,12 @@
             hamburger.classList.toggle('active');
             mobileMenu.classList.toggle('active');
         }
+
+        // Scroll to top visibility
+        const scrollBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            scrollBtn.classList.toggle('visible', window.scrollY > 400);
+        });
 
         applyStoredTheme();
 
